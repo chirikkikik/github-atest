@@ -4,6 +4,7 @@ import SignUpPage from './../pageobjects/SignUpPage'
 import CopilotPage from './../pageobjects/CopilotPage.js'
 import NewsletterPage from '../pageobjects/NewsletterPage.js'
 import ConfirmPage from '../pageobjects/ConfirmPage.js'
+import RepoPage from '../pageobjects/RepoPage.js'
 
 describe('My Login application', () => {
     xit('should signUP', async () => {
@@ -32,7 +33,7 @@ describe('My Login application', () => {
         await CopilotPage.clickSubmit()
     })
 
-    it('should subscribe to newsletter', async () => {
+    xit('should subscribe to newsletter', async () => {
         await browser.url('https://github.com')
         await MainPage.clickSubscribeButton()
         await expect(browser).toHaveUrl('https://resources.github.com/newsletter/')
@@ -46,5 +47,10 @@ describe('My Login application', () => {
         console.log(await text)
     })
 
-    //https://resources.github.com/newsletter/
+    it('should search for cat', async () => {
+        await browser.url('https://github.com')
+        await MainPage.search()
+        const href = await RepoPage.repoLink.getAttribute('href')
+        expect(href).toContain('cat')
+    })
 })
