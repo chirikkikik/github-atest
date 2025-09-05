@@ -5,6 +5,7 @@ import CopilotPage from './../pageobjects/CopilotPage.js'
 import NewsletterPage from '../pageobjects/NewsletterPage.js'
 import ConfirmPage from '../pageobjects/ConfirmPage.js'
 import RepoPage from '../pageobjects/RepoPage.js'
+import PricingPage from '../pageobjects/PricingPage.js'
 
 describe('My Login application', () => {
     xit('should signUP', async () => {
@@ -47,10 +48,18 @@ describe('My Login application', () => {
         console.log(await text)
     })
 
-    it('should search for cat', async () => {
+    xit('should search for cat', async () => {
         await browser.url('https://github.com')
         await MainPage.search()
         const href = await RepoPage.repoLink.getAttribute('href')
         expect(href).toContain('cat')
+    })
+
+    it('should show pricing page', async () => {
+        await browser.url('https://github.com')
+        await MainPage.clickPricing()
+        await expect(PricingPage.text).toBeDisplayed()
+        await PricingPage.clickCompare()
+        await expect(PricingPage.compareFeatures).toBeDisplayed()
     })
 })

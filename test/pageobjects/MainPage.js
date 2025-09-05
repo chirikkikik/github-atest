@@ -4,7 +4,8 @@ class MainPage {
     get copilotButton() { return $('//*[@id="cta"]/div/section/div/div/div/a') }
     get subscribeButton() { return $('.btn-mktg.mb-4.btn-muted-mktg') }
     get searchInputButton() { return $('.search-input-container') }
-    get searchInput() { return $('#query-builder-test')}
+    get searchInput() { return $('#query-builder-test') }
+    get pricingLink() { return $('.HeaderMenu-link.no-underline.px-0.px-lg-2.py-3.py-lg-2.d-block.d-lg-inline-block')}
 
     async clickSignUp() {
         await this.signUpButton.click()
@@ -24,6 +25,9 @@ class MainPage {
         await this.searchInputButton.click()
         await this.searchInput.setValue('cat')
         await browser.keys('Enter')
+    }
+    async clickPricing() {
+        await this.pricingLink.click()
     }
 }
 
